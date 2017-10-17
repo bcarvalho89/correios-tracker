@@ -1,35 +1,36 @@
-let express = require('express');
-let configs = require('./configs/config');
-let Tracker = require('./helpers/parser');
-let HTTPStatus = require('http-status-codes');
-let responses = require('./helpers/responses');
+import express from 'express';
+import HTTPStatus from 'http-status-codes';
 
-let app = express();
+import configs from './configs/config';
+import Tracker from './Tracker/Tracker';
+import responses from './helpers/responses';
 
-app.use(function(req, res, next) {
-  res.setHeader('x-powered-by', configs.app_name + ' - ' + configs.app_version);
+const app = express();
+
+app.use((req, res, next) => {
+  res.setHeader('x-powered-by', `${configs.app_name} - ${configs.app_version}`);
   res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Access-Control-Allow-Origin', configs.app_origin);
   res.setHeader('Access-Control-Allow-Methods', 'GET');
   next();
 });
 
-app.get('/', function(req, res) {
+app.get('/', (req, res) => {
   return res.status(HTTPStatus.OK).json({
     status: true,
     code: HTTPStatus.OK,
-    message: configs.app_name + ' - ' + configs.app_version
+    message: `${configs.app_name} - ${configs.app_version}`
   });
 });
 
-app.get('/:code', function(req, res) {
-  console.log(Tracker.teste);
+app.get('/:code', (req, res) => {
   Tracker.request(req)
-  .then(function(data) {
+  .then((data) => {
     let response = Tracker.parser(data);
     responses(response, HTTPStatus.OK, res);
-  }).catch(function(err) {
+  }).catch((err) => {
     console.log(err);
+    
     let messages = {};
     messages[HTTPStatus.BAD_REQUEST] = 'Código de rastreio inválido';
     messages[HTTPStatus.REQUEST_TIMEOUT] = 'Erro ao realizar conexão';
@@ -47,4 +48,4 @@ app.get('/:code', function(req, res) {
   });
 });
 
-module.exports = app;
+export default app;

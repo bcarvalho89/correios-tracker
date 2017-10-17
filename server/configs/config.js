@@ -1,4 +1,4 @@
-let configs = function() {
+function configs() {
   return {
     app_port: '3000',
     app_host: '127.0.0.1',
@@ -8,4 +8,4 @@ let configs = function() {
   };
 };
 
-module.exports = configs();
+export default configs();

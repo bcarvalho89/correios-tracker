@@ -1,11 +1,11 @@
 import rp from 'request-promise';
 import cheerio from 'cheerio';
 
-import { cleanString } from './utils';
+import { cleanString } from '../helpers/utils';
 
-let WebSRO = {
-  request: function (req) {
-
+class Tracker {
+  static request (req) {
+    
     let correios = {
       uri: 'http://www2.correios.com.br/sistemas/rastreamento/resultado_semcontent.cfm',
       form: {
@@ -16,9 +16,9 @@ let WebSRO = {
     };
 
     return rp(correios);
-  },
-
-  parser: function(data) {
+  }
+    
+  static parser (data) {
     let $ = cheerio.load(data);
     let object = [];
     let events = [];
@@ -28,10 +28,8 @@ let WebSRO = {
       trackingCode
     };
 
-    $(tableObject).map(function(index, row) {
-      row = $(row).children('td').map(function(index, field) {
-        return $(field).html();
-      });
+    $(tableObject).map((index, row) => {
+      row = $(row).children('td').map((index, field) => $(field).html() );
 
       if (row[0]){
         let event = {
@@ -41,11 +39,7 @@ let WebSRO = {
         };
 
         let eventLocationRowRaw = row[0].split('<br>');
-        let eventLocationRow = eventLocationRowRaw.map(function(text, index) {
-          return cleanString(text);
-        }).filter(function(text) {
-          return text.length > 0 ? text : false;
-        });
+        let eventLocationRow = eventLocationRowRaw.map((text, index) => cleanString(text) ).filter((text) => text.length > 0 ? text : false );
 
         event.date = eventLocationRow[0] + ' ' + eventLocationRow[1];
         event.location = eventLocationRow[2];
@@ -58,6 +52,6 @@ let WebSRO = {
 
     return Object.assign(tracking, events = {events});
   }
-};
+}
 
-module.exports = WebSRO;
+export default Tracker;

@@ -1,0 +1,17 @@
+/* Grid */
+.container {
+  width: 85%;
+  margin: 0 auto;
+  padding-right: $gutter-width;
+  padding-left: $gutter-width;
+  max-width: 100%;
+  min-width: 285px;
+
+  @include min-screen($tablet) {
+    width: 95%;
+  }
+
+  @include min-screen($desktop-hd) {
+    max-width: $max-container-width;
+  }
+}

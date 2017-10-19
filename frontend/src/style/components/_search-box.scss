@@ -1,0 +1,35 @@
+/* Search Box */
+.search-box {
+  max-width: 590px;
+  margin: 0 auto;
+
+  &__form {
+    height: 46px;
+    padding: 6px 0 0 10px;
+    box-shadow: 0 2px 2px 0 rgba($color--black, .16), 0 0 0 1px rgba($color--black, .08);
+    transition: box-shadow .2s cubic-bezier(0.4, 0.0, 0.2, 1);
+    background-color: $color--white;
+    border-radius: $border-radius;
+
+    &-input {
+      width: calc(100% - 60px);
+      height: 35px;
+    }
+
+    &-action {
+      width: 60px;
+      height: 35px;
+      vertical-align: bottom;
+    }
+
+    &.on-focus {
+      box-shadow: 0 3px 8px 0 rgba($color--black, .2), 0 0 0 1px rgba($color--black, .08);
+    }
+  }
+
+  &__tip {
+    font-size: 12px;
+    margin-top: $gutter-width / 2;
+    margin-left: $gutter-width / 2;
+  }
+}

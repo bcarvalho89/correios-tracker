@@ -2,13 +2,17 @@
 
 import React from 'react';
 import Routes from './routes';
-import Menu from '../components/menu';
+import Header from '../components/header';
+import Footer from '../components/footer';
 
 export default props => (
   <div>
-    <Menu />
+    <Header />
     <div className="container">
-      <Routes />
+      <main>
+        <Routes />
+      </main>
     </div>
+    <Footer />
   </div>
 )

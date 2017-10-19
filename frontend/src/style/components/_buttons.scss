@@ -1,8 +1,6 @@
 /* Buttons */
 .button {
   @include btnReset();
-  color: $color--white;
-  font-size: 16px;
   display: inline-block;
   transition: .2s;
 }

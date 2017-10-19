@@ -1,0 +1,10 @@
+/* Menu */
+.menu {
+  font-size: 16px;
+  text-align: right;
+
+  li {
+    display: inline-block;
+    margin-left: $gutter-width;
+  }
+}

@@ -42,7 +42,7 @@ class Home extends Component {
           <input type="text" placeholder="Digite o número de rastreamento (DV783051713BR)" className="input search-box__form-input" onChange={this.handleChange} onFocus={this.onFocus} onBlur={this.onBlur} />
           <button type="submit" className="button search-box__form-action"><i className="material-icons">search</i></button>
         </form>
-        <p class="search-box__tip"><strong>Dica: </strong>Rastreie vários objetos separando-os por <code>;</code></p>
+        <p className="search-box__tip"><strong>Dica: </strong>Rastreie vários objetos separando-os por <code>;</code></p>
       </div>
     )
   }

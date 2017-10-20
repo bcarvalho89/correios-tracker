@@ -8,12 +8,10 @@ import About from '../about/about';
 import Track from '../track/track';
 
 export default props => (
-  <main>
-    <Switch>
-      <Route exact path='/' component={Home}/>
-      <Route exact path='/track/:objects' component={Track}/>
-      <Route path='/sobre' component={About}/>
-      <Redirect path='*' to='/' />
-    </Switch>
-  </main>
+  <Switch>
+    <Route exact path='/' component={Home}/>
+    <Route exact path='/track/:objects' component={Track}/>
+    <Route path='/sobre' component={About}/>
+    <Redirect path='*' to='/' />
+  </Switch>
 );

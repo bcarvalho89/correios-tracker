@@ -18,3 +18,20 @@
 .size-18 { font-size: 18px; }
 .size-20 { font-size: 20px; }
 .size-22 { font-size: 22px; }
+
+.action {
+  text-align: center;
+  margin-top: $gutter-width * 2;
+}
+
+
+.event {
+  padding: $gutter-width;
+  display: block;
+  background-color: rgba(54, 118, 197, .4);
+  border-top: 1px solid rgba($color--black, .15);
+
+  &:first-child {
+    background-color: rgba(69, 179, 69, .4);
+  }
+}

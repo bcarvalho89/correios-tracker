@@ -1,0 +1,50 @@
+/* Collapse */
+.collapse {
+  max-width: 700px;
+  margin: 0 auto;
+
+  &__section {
+    position: relative;
+    width: 100%;
+    background-color: $color--white;
+    margin-bottom: 10px;
+    box-shadow: $box-shadow;
+
+    &-trigger {
+      position: absolute;
+      right: 6px;
+      top: 12px;
+      width: 30px;
+      height: 30px;
+      pointer-events: none;
+      transition: .2s;
+
+      i {
+        font-size: 30px;
+      }
+    }
+
+    &-header {
+      width: 100%;
+      overflow: hidden;
+      cursor: pointer;
+      font-weight: bold;
+      color: $color--text;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      font-size: 18px;
+      padding: $gutter-width $gutter-width * 2 $gutter-width $gutter-width;
+    }
+
+    &-content {
+      overflow: hidden;
+      transition: all .2s ease-in-out;
+    }
+
+    &.is-open {
+      .collapse__section-trigger {
+          transform: rotate(-180deg);
+      }
+    }
+  }
+}

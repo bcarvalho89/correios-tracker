@@ -9,7 +9,7 @@ export default props => (
   <div>
     <Header />
     <div className="container">
-      <main>
+      <main className="main-content">
         <Routes />
       </main>
     </div>

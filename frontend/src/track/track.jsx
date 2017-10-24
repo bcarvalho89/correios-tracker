@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-import ObjectList from './objectList';
+import { validateSRO } from '../helpers/utils';
+
 import Collapse from '../components/collapse';
 
-const API = 'http://localhost:3000/';
+const API = 'http://localhost:3000';
 
 export default class Track extends Component {
   constructor(props) {
@@ -15,6 +16,7 @@ export default class Track extends Component {
 
     this.state = {
       trackingList: [],
+      errors: [],
       isFething: true
     }
 
@@ -22,50 +24,74 @@ export default class Track extends Component {
   }
 
   requestTracking(objects) {
-    /*let _self = this;
+    let invalidObjects = [];
+    objects = objects.split(';');
 
-    setTimeout(function() {
-      _self.setState({...this.state, isFething: false})
-    }, 2000);*/
-    axios.get(`${API}${objects}`)
-      .then((resp) => {
-        this.setState({...this.state, trackingList: resp.data, isFething: false})
-      });
+    let validObjects = objects.filter((object) => {
+      if (!validateSRO(object)) {
+        let error = {
+          trackingCode: object,
+          message: 'Objeto inválido'
+        };
+
+        invalidObjects.push(error);
+        return false;
+      }
+
+      return true;
+    });
+
+    axios.post(`${API}/track`, {
+      objects: validObjects
+    })
+    .then((resp) => {
+      this.setState({...this.state, trackingList: resp.data, isFething: false, errors: invalidObjects})
+    });
   }
 
   render() {
-
     const renderEvents = (events) => {
       return events.map((event, index) => (
-        <li key={index}>
-          {event.status} -
-          {event.date} -
-          {event.location}
-        </li>
+        <span key={index} className="event">{event.status} -{event.date} - {event.location}</span>
       ))
     };
 
     const renderRows = () => {
-      console.log(this.state.trackingList);
-
       return this.state.trackingList.map((object, index) => (
-        <Collapse key={index}></Collapse>
-        /*<div >
-          <hr/>
-          <h2>{object.trackingCode}</h2>
+        <Collapse key={index} triggerTitle={object.trackingCode}>
           {renderEvents(object.events)}
-        </div>*/
+        </Collapse>
       ))
     };
 
+    const renderError = () => {
+      let error = this.state.errors.map((error, index) => (
+        <p key={index}><strong>{error.trackingCode}</strong> - {error.message}</p>
+      ));
+
+      let errorPlural = this.state.errors.length === 1 ? 'erro' : 'erros';
+
+      return (
+        <div className="error">
+          <h3 className="error__title">Encontramos {this.state.errors.length} {errorPlural}:</h3>
+          {error}
+        </div>
+      )
+    };
 
     return (
       <div>
         <div className={this.state.isFething ? 'loader is-active' : 'loader'}></div>
 
+        {
+          this.state.errors.length > 0 &&
+            renderError()
+        }
+
         {!this.state.isFething &&
           renderRows()
         }
+
         {!this.state.isFething &&
           <div className="action">
             <Link to='/' className="button button--default">Voltar</Link>

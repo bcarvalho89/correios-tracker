@@ -2,16 +2,6 @@ export function cleanString(string) {
   return string.replace(/(\r\n|\n|\r|\t|<(?:.|\n)*?>)/gm, '').replace(/&#xA0;/gm, ' ').trim();
 }
 
-export function normalizePort(val) {
-  let port = parseInt(val, 10);
-
-  if (isNaN(port)) { return val; }
-
-  if (port >= 0) { return port; }
-
-  return false;
-}
-
 export function validateSRO(object){
   let objectRegex = /^((BJ|NN|CF|CM|CX|ML|PL|PW|SB|TT|PE|MR|UA)[0-9]{9}|[A-Za-z]{2}[0-9]{9}[A-Za-z]{2}|[N]{2}[0-9]{11})$/;
   object = cleanString(object.toUpperCase());

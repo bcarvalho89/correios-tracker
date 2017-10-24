@@ -5,6 +5,7 @@ import axios from 'axios';
 import { validateSRO } from '../helpers/utils';
 
 import Collapse from '../components/collapse';
+import { Accordion, AccordionItem } from 'react-sanfona';
 
 const API = 'http://localhost:3000';
 
@@ -57,11 +58,21 @@ export default class Track extends Component {
     };
 
     const renderRows = () => {
-      return this.state.trackingList.map((object, index) => (
-        <Collapse key={index} triggerTitle={object.trackingCode}>
+      return (
+        <Accordion className="collapse" activeItems={0}>
+          {this.state.trackingList.map((object, index) => (
+            <AccordionItem key={index}title={object.trackingCode} className="collapse__section" titleClassName="collapse__section-header" expandedClassName="is-open">
+              {renderEvents(object.events)}
+            </AccordionItem>
+          ))}
+        </Accordion>
+      );
+
+      /*return this.state.trackingList.map((object, index) => (
+        <Collapse key={index} index={index} triggerTitle={object.trackingCode}>
           {renderEvents(object.events)}
         </Collapse>
-      ))
+      ))*/
     };
 
     const renderError = () => {

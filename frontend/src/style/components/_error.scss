@@ -1,0 +1,9 @@
+/* Error */
+.error {
+  max-width: 700px;
+  margin: 0 auto $gutter-width * 2;
+
+  &__title {
+    color: $color--danger;
+  }
+}

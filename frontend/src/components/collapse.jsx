@@ -109,15 +109,11 @@ class Collapse extends Component {
         <div className={triggerClassString.trim()}>
           <span className="collapse__section-trigger"><i className="material-icons">keyboard_arrow_down</i></span>
           <div className="collapse__section-header" onClick={this.handleTriggerClick}>
-            DV783051713BR
+            {this.props.triggerTitle}
           </div>
           <div className="collapse__section-content" style={style} onTransitionEnd={this.handleTransitionEnd}>
             <div className="collapse__section-content__inner" ref="inner">
-              <span className="event">Objeto entregue ao destinatário -16/10/2017 às 18:55 -ITATIBA / SP</span>
-              <span className="event">Objeto saiu para entrega ao destinatário -16/10/2017 às 11:21 -ITATIBA / SP</span>
-              <span className="event">Objeto encaminhado  de Unidade de Tratamento em INDAIATUBA / SP para Unidade de Distribuição em ITATIBA / SP -14/10/2017 às 03:31 -INDAIATUBA / SP</span>
-              <span className="event">Objeto encaminhado  de Agência dos Correios em AMERICANA / SP para Unidade de Tratamento em INDAIATUBA / SP -13/10/2017 às 16:29 -AMERICANA / SP</span>
-              <span className="event">Objeto postado -13/10/2017 às 09:34 -AMERICANA / SP</span>
+              {this.props.children}
             </div>
           </div>
         </div>

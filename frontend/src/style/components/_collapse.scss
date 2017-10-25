@@ -34,11 +34,6 @@
       }
     }
 
-    /*&-content {
-      overflow: hidden;
-      transition: all .2s ease-in-out;
-    }*/
-
     &.is-open .collapse__section-header::after { transform: rotate(180deg); }
   }
 }

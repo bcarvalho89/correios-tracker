@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+
 import axios from 'axios';
+import { Accordion, AccordionItem } from 'react-sanfona';
 
 import { validateSRO } from '../helpers/utils';
-
-import Collapse from '../components/collapse';
-import { Accordion, AccordionItem } from 'react-sanfona';
+import Event from './event';
 
 const API = 'http://localhost:3000';
 
@@ -53,26 +53,20 @@ export default class Track extends Component {
   render() {
     const renderEvents = (events) => {
       return events.map((event, index) => (
-        <span key={index} className="event">{event.status} -{event.date} - {event.location}</span>
+        <Event key={index} data={event} />
       ))
     };
 
     const renderRows = () => {
       return (
-        <Accordion className="collapse" activeItems={0}>
+        <Accordion className="collapse">
           {this.state.trackingList.map((object, index) => (
-            <AccordionItem key={index}title={object.trackingCode} className="collapse__section" titleClassName="collapse__section-header" expandedClassName="is-open">
+            <AccordionItem key={index} title={object.trackingCode} className="collapse__section" titleClassName="collapse__section-header" expandedClassName="is-open" expanded={index === 0}>
               {renderEvents(object.events)}
             </AccordionItem>
           ))}
         </Accordion>
       );
-
-      /*return this.state.trackingList.map((object, index) => (
-        <Collapse key={index} index={index} triggerTitle={object.trackingCode}>
-          {renderEvents(object.events)}
-        </Collapse>
-      ))*/
     };
 
     const renderError = () => {

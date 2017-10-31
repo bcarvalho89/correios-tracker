@@ -5,7 +5,7 @@ module.exports = {
   entry: './src/index.jsx',
   devtool: 'source-map',
   output: {
-    path: __dirname + '/public/assets/',
+    path: __dirname + '/public/',
     filename: './app.js'
   },
   devServer: {

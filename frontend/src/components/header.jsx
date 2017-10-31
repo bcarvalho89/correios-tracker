@@ -8,7 +8,7 @@ export default class Header extends Component {
       <header className='header'>
         <Menu />
         <div className='header__logo'>
-          <h1><Link to="/">(LOGO)</Link></h1>
+          <h1><Link to="/">Jaiminho</Link></h1>
         </div>
       </header>
     )

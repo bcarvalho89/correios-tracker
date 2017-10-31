@@ -1,5 +1,5 @@
 {
-  "name": "correios-tracker-backend",
+  "name": "jaiminho-backend",
   "version": "1.0.0",
   "description": "",
   "scripts": {
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bcarvalho89/correios-tracker.git"
+    "url": "git+https://github.com/bcarvalho89/jaiminho.git"
   },
   "author": "Bruno Carvalho <bruno@brunocarvalho.me>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/bcarvalho89/correios-tracker/issues"
+    "url": "https://github.com/bcarvalho89/jaiminho/issues"
   },
-  "homepage": "https://github.com/bcarvalho89/correios-tracker#readme",
+  "homepage": "https://github.com/bcarvalho89/jaiminho#readme",
   "dependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",

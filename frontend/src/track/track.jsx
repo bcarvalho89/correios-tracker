@@ -7,7 +7,7 @@ import { Accordion, AccordionItem } from 'react-sanfona';
 import { validateSRO } from '../helpers/utils';
 import Event from './event';
 
-const API = 'http://localhost:3000';
+const API = 'https://jaiminho-api.herokuapp.com';
 
 export default class Track extends Component {
   constructor(props) {

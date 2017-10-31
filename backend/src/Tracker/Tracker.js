@@ -1,5 +1,6 @@
 import rp from 'request-promise';
 import cheerio from 'cheerio';
+import iconv from 'iconv-lite';
 
 import { cleanString, validateSRO } from '../helpers/utils';
 
@@ -18,6 +19,7 @@ class Tracker {
         form: {
           objetos: objectsToTrack[i]
         },
+        encoding: null,
         method: 'POST',
         headers: {}
       };
@@ -32,7 +34,8 @@ class Tracker {
     let response = [];
 
     data.forEach(function(element) {
-      let $ = cheerio.load(element);
+      let elementCorrectEncoding  = iconv.decode(element, 'iso-8859-1');
+      let $ = cheerio.load(elementCorrectEncoding);
       let events = [];
 
       let tableObject = $('table').find('tr');

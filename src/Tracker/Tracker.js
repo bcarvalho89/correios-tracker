@@ -15,7 +15,7 @@ class Tracker {
 
     for (let i = 0; i < objectsToTrack.length; i++) {
       let request = {
-        uri: 'http://www2.correios.com.br/sistemas/rastreamento/resultado_semcontent.cfm',
+        uri: 'https://www2.correios.com.br/sistemas/rastreamento/resultado_semcontent.cfm',
         form: {
           objetos: objectsToTrack[i]
         },
